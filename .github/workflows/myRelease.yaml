@@ -1,0 +1,21 @@
+name: myRelease
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    name: myRelease
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: yarn
+      - run: yarn package
+      - uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            out/make/squirrel.windows/x64/*
