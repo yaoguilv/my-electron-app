@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 const path = require('path')
+require('update-electron-app')()
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -14,7 +15,7 @@ const createWindow = () => {
     // ipcMain.handle('ping', () => 'pong')
     ipcMain.handle('dark-mode:toggle', () => {
         // shouldUseDarkColors的布尔型变量：当前页面应该是黑色调
-        if(nativeTheme.shouldUseDarkColors) {
+        if (nativeTheme.shouldUseDarkColors) {
             nativeTheme.themeSource = 'light'
         } else {
             nativeTheme.themeSource = 'dark'
