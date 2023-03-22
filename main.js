@@ -1,6 +1,9 @@
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 const path = require('path')
-require('update-electron-app')()
+require('update-electron-app')({
+    repo: 'yaoruilv/my-electron-app',
+    updateInterval: '1 hour'
+})
 
 const createWindow = () => {
     const win = new BrowserWindow({
